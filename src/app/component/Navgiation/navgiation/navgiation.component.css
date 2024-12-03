@@ -1,0 +1,16 @@
+.contents {
+  width: 50%;
+  margin: 70px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.front-pagination,
+.back-pagination {
+  background-color: teal;
+  color: antiquewhite;
+  text-align: center;
+  padding: 20px 50px;
+  cursor: pointer;
+}
