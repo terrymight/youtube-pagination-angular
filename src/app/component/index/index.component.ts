@@ -5,26 +5,14 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule],
+  imports: [RouterOutlet],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css',
   standalone: true,
   providers: []
 })
 
-export class IndexComponent implements OnInit {
-  title = 'pagination';
-  list: any[] = []
-  constructor(private service: TokenService) { }
+export class IndexComponent {
 
-  ngOnInit(): void {
-    this.service.getUsers()
-      .subscribe({
-        next: resp => {
-          this.list = resp
 
-        },
-        error: err => { console.log(err) }
-      })
-  }
 }
