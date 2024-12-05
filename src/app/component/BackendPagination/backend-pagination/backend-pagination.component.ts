@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
 })
 export class BackendPaginationComponent implements OnInit {
 
-  list: any[] = []
+  list!: any
   title: string = 'Backend Pagination'
+  page: number = 1
 
   constructor(
     private service: TokenService,
@@ -21,15 +22,15 @@ export class BackendPaginationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loagtabledata()
+    this.loagtabledata(this.page)
   }
 
-  loagtabledata(): void {
-    this.service.getUsers()
+  loagtabledata(page: number): void {
+    this.service.getUserspagination(page)
       .subscribe({
         next: resp => {
           this.list = resp
-
+          console.log(resp)
         },
         error: err => { console.log(err) }
       })

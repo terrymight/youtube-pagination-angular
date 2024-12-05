@@ -3,8 +3,8 @@
 <h4 (click)="goback()">
     << Go Back </h4>
 
-        <p class="text-count">
-            Rows returned {{ list.length }}
+        <p class="text-count" *ngIf="list?.total">
+            Rows returned {{ list['total'] }}
         </p>
 
         <table>
@@ -15,10 +15,22 @@
                 <th>Date Created</th>
             </tr>
 
-            <tr *ngFor="let item of list; index as i ;">
-                <td>{{ i }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.created_at|date }}</td>
+            <tr *ngFor="let item of list?.data; index as i ;">
+                <!-- <td>{{ i }}</td> -->
+                <td>{{ (list['current_page'] - 1 ) * list['per_page'] + i + 1}}</td>
+                <td>{{ item['name'] }}</td>
+                <td>{{ item['email'] }}</td>
+                <td>{{ item['created_at'] | date}}</td>
             </tr>
         </table>
+        <nav>
+            <div class="pagination">
+                showing {{ list?.from }} - to {{ list?.to }} of {{ list?.total }}
+                @for (item of list?.links; track $index) {
+                <span (click)="loagtabledata(item['label'])" [ngClass]="item['url'] === null? 'disabled':'enabled'"
+                    [ngClass]="{'active':item['active']}" [innerHTML]="item['label']" class="pagination">
+
+                </span>
+                }
+            </div>
+        </nav>
