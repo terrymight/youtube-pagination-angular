@@ -15,10 +15,51 @@
                 <th>Date Created</th>
             </tr>
 
-            <tr *ngFor="let item of list; index as i ;">
-                <td>{{ i }}</td>
+            <tr *ngFor="
+            let item of list
+            | angularPaginator: { itemsPerPage: selectedValue, currentPage: currentPage } ; index as i
+            ">
+                <td>{{ (currentPage - 1) * selectedValue + i + 1 }}</td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.email }}</td>
                 <td>{{ item.created_at|date }}</td>
             </tr>
         </table>
+
+
+        <nav [maxSize]="5" [forceEllipses]="true" [rotate]="true" (pageChange)="currentPage = $event" angularPaginator
+            #paginator="angularPaginator">
+            <ng-container *ngIf="paginator.pages['length'] !== 0">
+                <ul class="pagination">
+
+                    <!-- direction link -->
+                    <li class="page-item">
+                        <a (click)="paginator.toPreviousPage()"
+                            [ngClass]="paginator.currentPage === paginator.firstPage? 'disabled':'enabled'"
+                            class="page-link">
+                            <span>
+                                Previous
+                            </span>
+                        </a>
+                    </li>
+
+                    <!-- pagination array -->
+                    <li class="page-item" *ngFor="let page of paginator.pages">
+                        <a (click)="!page['active'] && paginator.setCurrentPage(page['number'])"
+                            [ngClass]="page['active']?'active':'disabled'">
+                            <span>
+                                {{ page['text'] }}
+                            </span>
+
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a (click)="paginator.toNextPage()" class="page-link"
+                            [ngClass]="paginator.currentPage === paginator.lastPage? 'disabled':'enabled'">
+                            <span>Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </ng-container>
+        </nav>

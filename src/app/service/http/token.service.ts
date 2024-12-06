@@ -26,7 +26,7 @@ export class TokenService {
     return this.http.get<any>(`${environment.apiUrl}/api/user`, { withCredentials: true })
   }
 
-  getUserspagination(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/api/user-pagination`)
+  getUserspagination(page: number): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/api/user-pagination?page=` + page)
   }
 }

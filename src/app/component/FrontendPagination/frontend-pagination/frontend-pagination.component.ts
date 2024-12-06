@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../../service/http/token.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AngularPaginatorModule } from "angular-paginator";
 
 @Component({
   selector: 'app-frontend-pagination',
-  imports: [CommonModule],
+  imports: [CommonModule, AngularPaginatorModule,],
   standalone: true,
   templateUrl: './frontend-pagination.component.html',
   styleUrl: './frontend-pagination.component.css'
@@ -14,6 +15,8 @@ export class FrontendPaginationComponent implements OnInit {
 
   list: any[] = []
   title: string = 'Frontend Pagination'
+  currentPage = 1;
+  selectedValue: number = 15;
 
   constructor(
     private service: TokenService,

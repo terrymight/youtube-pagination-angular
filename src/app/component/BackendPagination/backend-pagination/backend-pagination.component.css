@@ -1,7 +1,8 @@
 table,
 .text-count,
 h2,
-h4 {
+h4,
+.pagination {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 80%;
@@ -41,4 +42,24 @@ table th,
 .text-count {
   padding: 10px;
   box-sizing: border-box;
+}
+
+.pagination {
+  padding: 4px 5px;
+  text-align: right;
+  color: gray;
+}
+
+.disabled {
+  color: gray;
+}
+
+.enabled {
+  color: teal;
+}
+
+.active {
+  background-color: teal;
+  color: antiquewhite;
+  border-radius: 2px;
 }
