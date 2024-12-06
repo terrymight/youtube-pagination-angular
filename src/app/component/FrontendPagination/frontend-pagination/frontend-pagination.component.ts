@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../../service/http/token.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AngularPaginatorModule, AngularPaginatorDirective } from "angular-paginator";
+import { AngularPaginatorModule } from "angular-paginator";
 
 @Component({
   selector: 'app-frontend-pagination',

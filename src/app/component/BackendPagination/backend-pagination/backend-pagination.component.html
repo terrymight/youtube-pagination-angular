@@ -28,9 +28,7 @@
                 showing {{ list?.from }} - to {{ list?.to }} of {{ list?.total }}
                 @for (item of list?.links; track $index) {
                 <span (click)="loagtabledata(item['label'])" [ngClass]="item['url'] === null? 'disabled':'enabled'"
-                    [ngClass]="{'active':item['active']}" [innerHTML]="item['label']" class="pagination">
-
-                </span>
+                    [ngClass]="{'active':item['active']}" [innerHTML]="item['label']" class="pagination"></span>
                 }
             </div>
         </nav>
